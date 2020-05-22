@@ -2,6 +2,14 @@ const to = require(`../utils/to`);
 const db = require(`../config/conn`);
 let exp = {};
 
+exp.renderLogin = (req, res) => {
+    res.render(`login`);
+}
+
+exp.renderRegister = (req, res) => {
+    res.render(`register`);
+}
+
 exp.login = async (req, res) => {
 
     let name = String(req.body.username).trim();
@@ -44,6 +52,10 @@ exp.login = async (req, res) => {
         }
         
     }
+}
+
+exp.register = (req, res) => {
+    res.send(req.body);
 }
 
 module.exports = exp;
