@@ -55,7 +55,7 @@ exp.login = async (req, res) => {
 }
 
 exp.register = (req, res) => {
-    res.send(req.body);
+    return res.send(req.body);
 }
 
 module.exports = exp;

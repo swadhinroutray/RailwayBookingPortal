@@ -6,7 +6,7 @@ router.get(`/`, auth.renderLogin);
 router.post('/login', auth.login);
 
 router.get('/register', auth.renderRegister);
-router.post('/registerForm', auth.register);
+router.post('/register', auth.register);
 
 router.get(`/booking`, user.renderBooking);
 
