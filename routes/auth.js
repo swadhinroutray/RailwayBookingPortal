@@ -1,6 +1,5 @@
 const to = require(`../utils/to`);
 const db = require(`../config/conn`);
-
 let exp = {};
 
 exp.login = async (req, res) => {
