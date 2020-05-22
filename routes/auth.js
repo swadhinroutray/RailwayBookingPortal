@@ -55,7 +55,7 @@ exp.login = async (req, res) => {
 }
 
 exp.register = (req, res) => {
-    res.send(req.body);
+    return res.send(req.body);
 }
 exp.logout = async (req, res) => {
     req.session.destroy();

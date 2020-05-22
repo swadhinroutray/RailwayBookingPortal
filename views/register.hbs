@@ -17,35 +17,42 @@
 	</div>-->
   
   <div class="login-box">
+  <h1>Register</h1>
     
-    <h1>Register</h1>
-
-    <form id="login_form" method="POST" action="/registerForm">
-    <div class="textbox">
     
+    <form method="POST" action="/register">
+    
+    
+      <div class="textbox">
       <i class="fas fa-user"></i>
-      <input type="text" placeholder="Name" name="name" required>
+      <input type="text" placeholder="Name" name="name" required/>
+      </div>
 
+      <div class="textbox">
       <i class="fas fa-user"></i>
-      <input type="text" placeholder="Username" name="username" required>
+      <input type="text" placeholder="Username" name="username" required/>
+      </div>
 
+      <div class="textbox">
       <i class="fas fa-lock"></i>
-      <input type="password" placeholder="Password" name="pass" required>
+      <input type="password" placeholder="Password" name="pass" required/>
+      </div>
 
+      <div class="textbox">
       <i class="fab fa-draft2digital"></i>
-      <input type="number" placeholder="Age" name="age" required>
+      <input type="number" placeholder="Age" name="age" required/>
+      </div>
     
+      <div class="textbox">
       <i class="fas fa-home"></i>
-      <input type="text" placeholder="Address" name="address" required>
+      <input type="text" placeholder="Address" name="address" required/>
+      </div>
     
       <button type="submit" class="btn">Sign Up</button>
-    
-    </div>
+
     </form> 
-    
-    <div class="sign-up" style="font-family: sans-serif; font-weight: bold;">
-      <a href="/"> Already have an account? Sign in.</a>
-    </div>
+    <div class="sign-up" style="font-family: sans-serif; font-weight: bold;"><a href="/"> Already have an account? Sign in.</a></div>
+  
   </div>
   <div class="color-overlay"></div>
 </body>
