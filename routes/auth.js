@@ -57,5 +57,10 @@ exp.login = async (req, res) => {
 exp.register = (req, res) => {
     return res.send(req.body);
 }
-
+exp.logout = async (req, res) => {
+    req.session.destroy();
+    return res.redirect('/');
+  };
+  
+  
 module.exports = exp;

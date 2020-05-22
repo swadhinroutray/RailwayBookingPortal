@@ -16,7 +16,7 @@
   </header>
   <div class="buttons">
     <button class="nav-btn">My Trips</button>
-    <button class="nav-btn">Log Out</button>
+    <button class="nav-btn" id="Logout">Log Out</button>
   </div>
 
 
@@ -147,6 +147,17 @@
         x[i].classList.add("select-hide");
       }
     }
+  }
+  document.getElementById("Logout").onclick = () =>{
+          const url = window.location.origin + "/";
+          fetch("/logout",{
+          headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+    })
+    window.location.replace(url)
+
   }
   document.addEventListener("click", closeAllSelect);
 </script>
