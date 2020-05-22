@@ -19,10 +19,10 @@ exp.login = async (req, res) => {
 
 
     [err, users] = await to(db.query(`SELECT * FROM Users WHERE username = ?`, [name]));
-    [err, admins] = await to(db.query(`SELECT * FROM Admins WHERE username = ?`, [name]));
+    [error, admins] = await to(db.query(`SELECT * FROM Admins WHERE username = ?`, [name]));
 
-    if(err) {
-        return res.send('Error in login!');
+    if(err || error) {
+        return res.send({success:false, msg: 'Error in login!'});
     } else {
       
         if(users.length <= 0 && admins.length <= 0) {
@@ -57,25 +57,12 @@ exp.login = async (req, res) => {
 
                 data = admins[0]; 
 
-                bcrypt.compare(password, data.password, async function(err, isMatch) {
-
-                    if (err) {
-                        throw err;
-                    } else if (!isMatch) {
-                        return res.send({success: false, msg: "Invalid credentials!"});
-                    } else {
-                
-                        data = admins[0];
-                        req.session.admin_id = data.admin_id;
-                        req.session.name = data.name;
-                        req.session.username = data.username;
-                        req.session.isAdminLoggedIn = true;
-                        req.session.save();
-                        return res.send({success: true, admin:true}); 
-                    }
-                
-                })
-            
+                req.session.admin_id = data.admin_id;
+                req.session.name = data.name;
+                req.session.username = data.username;
+                req.session.isAdminLoggedIn = true;
+                req.session.save();
+                return res.send({success: true, admin:true}); 
             }
         }
         

@@ -271,7 +271,7 @@ CREATE TABLE `Users` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +280,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'devang','abc',20,'Delhi','Devang Arora'),(2,'swadhin','abc',20,'Pune',NULL),(3,'dhruv','abc',20,'Pune',NULL);
+INSERT INTO `Users` VALUES (2,'swadhin','abc',20,'Pune',NULL),(3,'dhruv','abc',20,'Pune',NULL),(4,'devangarora','asd',12,'asd','devangarora'),(5,'devang','$2b$10$66.l0Ka20JsbIBdCBmN5CO0FApnGKDof81NAXV/jtYsb.3716Ge0G',20,'delhi','devangarora');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -293,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-22 17:52:40
+-- Dump completed on 2020-05-23  2:12:57
