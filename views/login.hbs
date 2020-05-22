@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<title>Login</title>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <div class="login-box">
+    <h1>Login</h1>
+
+    <form id="login_form" method="POST" action="/login">
+
+      <div class="textbox">
+        <i class="fas fa-user"></i>
+        <input id="name" type="text" placeholder="Username" name="name" required>
+      </div>
+
+      <div class="textbox">
+        <i class="fas fa-lock"></i>
+        <input id="password" type="password" placeholder="Password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+
+    <div class="sign-up" style="font-family: sans-serif; font-weight: bold;"><a href="/register"> Don't have an account?
+        Sign up.</a>
+    </div>
+  </div>
+  <div class="color-overlay"></div>
+
+
+  <script>
+    document
+      .getElementById("login_form")
+      .addEventListener("submit", onSubmit);
+
+    function onSubmit(e) {
+      const url1 = window.location.origin + "/booking";
+      const url3 = window.location.origin + "/admin";
+      const url2 = window.location.origin + "/";
+      e.preventDefault();
+      // This data is not being used in the back end (Only the token), but have it here for you to experiment
+      const username = document.getElementById("name").value;
+      const password = document.getElementById("password").value;
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        body: JSON.stringify({
+          username: username,
+          pass: password,
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .catch(err => console.log(err))
+        .then(function (json) {
+          console.log(json);
+          if (json.success === undefined || json.success === false){
+            alert(json.msg);
+            window.location.replace(url2);
+          } else if(json.admin === false){
+            window.location.replace(url1);
+          } else {
+            window.location.replace(url3);
+          }
+        })
+        .catch(err => console.log(err))
+    }
+  </script>
+
+  </script>
+
+</body>
+
+</html>

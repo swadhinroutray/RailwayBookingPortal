@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+html,
+body {
+  /*background-image: url('portal_bg.jpg');*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-color: rgb(224, 232, 240);
+  padding: 0;
+  /* overflow-y: hidden; */
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 7rem;
+  font-family: "Montserrat", sans-serif;
+  color: rgb(255, 255, 255);
+  margin-top: 50px;
+  padding-top: 65px;
+  padding-bottom: 5rem;
+}
+.container {
+  background: url("../images/7.jpg");
+  width: 100%;
+  height: 30vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: -3.1em;
+  padding: 0;
+}
+
+.buttons {
+  margin-top: 1%;
+  position: absolute;
+  right: 3%;
+}
+
+.nav-btn {
+  cursor: pointer;
+  background-color: rgb(52, 19, 95);
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  margin: 0 10px 0 10px;
+}
+
+.details {
+  margin-top: 8%;
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2%;
+  /* padding-top: 1%; */
+  /* margin-left: 3%; */
+  margin-right: 3%;
+}
+
+.custom-select {
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: rgb(52, 19, 95);
+  font-weight: bold;
+  margin-top: 2%;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 40%;
+  right: 3%;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  color: #ffffff;
+  padding: 5% 10%;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: relative;
+  background-color: rgb(52, 19, 95);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  font-weight: bold;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.destinationlabel {
+  font-family: "Montserrat", sans-serif;
+  margin-right: 2%;
+  margin-top: 4px;
+  font-size: 120%;
+  font-weight: bold;
+  margin-left: 1%;
+}
+.sourcelabel {
+  font-family: "Montserrat", sans-serif;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 0.3%;
+  font-size: 120%;
+  font-weight: bold;
+}
+.datelabel {
+  font-family: "Montserrat", sans-serif;
+  margin-left: 5%;
+  margin-right: 20px;
+  margin-top: 1%;
+  font-size: 120%;
+  font-weight: bold;
+}
+.classtype {
+  font-family: "Montserrat", sans-serif;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 0.3%;
+  font-size: 120%;
+  font-weight: bold;
+}
+.date {
+  /* width: 40%; */
+  padding: 9px 16px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  background-color: rgb(52, 19, 95);
+  color: white;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.submitbtn {
+  background-color: rgb(52, 19, 95);
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  margin-top: 5%;
+  margin-left: 45%;
+  font-family: "Montserrat", sans-serif;
+  padding: 8px 24px;
+}
+.source-block {
+  margin-left: 7%;
+  margin-right: 5%;
+}
+.destination-block {
+  margin-left: 14%;
+}
+.date-block {
+  margin-left: 15%;
+}
+.class-block {
+  margin-left: 7%;
+}
