@@ -22,12 +22,15 @@ exp.feedback =  async (req,res) => {
     console.log("Inserted Feedback");
     return res.send({success:true});
     
-//Need to enable duplicate entry for feedback
+// TODO: Need to enable duplicate entry for feedback for one user, maybe change primary key pair
 }
 
 module.exports = exp;
 
 /*
+
+Inserting feedback procedure 
+
 Delimiter $$
 CREATE PROCEDURE `InsertFeedback`(
 in userId  int(11), 
