@@ -20,32 +20,32 @@
   <h1>Register</h1>
     
     
-    <form method="POST" action="/register">
+    <form id="login_form" method="POST" action="/register">
     
     
       <div class="textbox">
       <i class="fas fa-user"></i>
-      <input type="text" placeholder="Name" name="name" required/>
+      <input type="text" placeholder="Name" id="name" name="name" required/>
       </div>
 
       <div class="textbox">
       <i class="fas fa-user"></i>
-      <input type="text" placeholder="Username" name="username" required/>
+      <input type="text" placeholder="Username" id="username" name="username" required/>
       </div>
 
       <div class="textbox">
       <i class="fas fa-lock"></i>
-      <input type="password" placeholder="Password" name="pass" required/>
+      <input type="password" placeholder="Password" id="password" name="password" required/>
       </div>
 
       <div class="textbox">
       <i class="fab fa-draft2digital"></i>
-      <input type="number" placeholder="Age" name="age" required/>
+      <input type="number" placeholder="Age" id="age" name="age" required/>
       </div>
     
       <div class="textbox">
       <i class="fas fa-home"></i>
-      <input type="text" placeholder="Address" name="address" required/>
+      <input type="text" placeholder="Address" id="address" name="address" required/>
       </div>
     
       <button type="submit" class="btn">Sign Up</button>
@@ -55,6 +55,57 @@
   
   </div>
   <div class="color-overlay"></div>
+
+    <script>
+    document
+      .getElementById("login_form")
+      .addEventListener("submit", onSubmit);
+
+      function onSubmit(e) {
+      const url1 = window.location.origin + "/";
+      const url2 = window.location.origin + "/register";
+      e.preventDefault();
+      // This data is not being used in the back end (Only the token), but have it here for you to experiment
+      const name = document.getElementById("name").value;
+      const password = document.getElementById("password").value;
+      const username = document.getElementById("username").value;
+      const age = document.getElementById("age").value;
+      const address = document.getElementById("address").value;
+      
+      const sendData = {
+          name,
+          username,
+          password,
+          age,
+          address
+      };
+
+      fetch("/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        body: JSON.stringify(sendData),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .catch(err => console.log(err))
+        .then(function (json) {
+          if (json.success === undefined || json.success === false){
+            alert(json.msg);
+            window.location.replace(url2);
+          } else {
+            alert(json.msg);
+            window.location.replace(url1);
+          }
+        })
+        .catch(err => console.log(err))
+    }
+  </script>
+
 </body>
 
 </html>
