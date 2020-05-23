@@ -42,12 +42,12 @@ h1 {
 
 .nav {
   background-color: rgb(52, 19, 95);
-  height: 1px;
+  height: 0rem;
 }
 
 .tags {
   padding: 2px 8px 2px 8px;
-  margin-left: 85%;
+  
   padding-top: 0.7%;
 }
 
@@ -55,11 +55,26 @@ h1 {
   cursor: pointer;
   padding: 8px 8px;
   text-decoration: none;
+  margin-left:78%;
   border: none;
   color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   margin: 0 10px 0 10px;
+}
+
+.name-tag {
+  cursor: pointer;
+  position: absolute;
+  left: 2%;
+  /* padding: 8px 8px; */
+  /* text-decoration: none; */
+  /* margin-left:9%; */
+  /* border: none; */
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  /* margin: 0 10px 0 10px; */
 }
 
 .nav-tag:hover {
