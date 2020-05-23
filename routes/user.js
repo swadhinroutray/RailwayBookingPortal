@@ -3,7 +3,7 @@ const db = require(`../config/conn`);
 let exp = {};
 
 exp.renderBooking = (req, res) => {
-    res.render(`booking`, {});
+    res.render(`booking`, {user: req.session});
 }
 
 exp.renderFeedBack = (req,res) =>{
