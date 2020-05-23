@@ -18,11 +18,9 @@ exp.feedback =  async (req,res) => {
         console.log(err)
         return res.send('Error in Inserting Feedback');
     } 
-
     console.log("Inserted Feedback");
     return res.send({success:true});
     
-// TODO: Need to enable duplicate entry for feedback for one user, maybe change primary key pair
 }
 
 module.exports = exp;
@@ -37,7 +35,7 @@ in userId  int(11),
 in Body  varchar(255), 
 in Rating   int(11))
 BEGIN
-	Insert into Feedback
+	Insert into Feedback(user_id,body,rating)
 	Values(userId,Body,Rating);
   END $$
 */
