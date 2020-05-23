@@ -40,3 +40,16 @@ CREATE PROCEDURE `InsertStation` (in stationname  varchar(255))
     BEGIN
 	Insert into Stations(name) Values(stationname);
     END $$
+
+
+--Inserting feedback procedure 
+
+Delimiter $$
+CREATE PROCEDURE `InsertFeedback`(
+in userId  int(11), 
+in Body  varchar(255), 
+in Rating   int(11))
+BEGIN
+	Insert into Feedback(user_id,body,rating)
+	Values(userId,Body,Rating);
+  END $$
