@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Linux (x86_64)
 --
--- Host: localhost    Database: dbs_project
+-- Host: localhost    Database: dbsProject
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1
+-- Server version	8.0.20-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,12 +21,12 @@
 
 DROP TABLE IF EXISTS `Admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Admins` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int NOT NULL AUTO_INCREMENT,
   `password` varchar(255) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `age` int(11) NOT NULL,
+  `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`admin_id`),
@@ -50,11 +50,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Drivers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Drivers` (
-  `driver_id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
+  `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`driver_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -76,11 +76,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Passengers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Passengers` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT,
-  `trip_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `pid` int NOT NULL AUTO_INCREMENT,
+  `trip_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`pid`),
@@ -106,13 +106,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Stations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Stations` (
-  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `sid` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `Stations` (
 
 LOCK TABLES `Stations` WRITE;
 /*!40000 ALTER TABLE `Stations` DISABLE KEYS */;
-INSERT INTO `Stations` VALUES (1,'Nagpur','Maharashtra'),(2,'Mumbai','Maharashtra'),(3,'Delhi','Delhi'),(4,'Chennai','Tamil Nadu'),(5,'Udupi','Karnataka'),(6,'Jaipur','Rajasthan'),(7,'Bangalore','Karnataka'),(8,'Mangalore','Karnataka'),(9,'Kolkata','West Bengal');
+INSERT INTO `Stations` VALUES (7,'Bangalore'),(4,'Chennai'),(3,'Delhi'),(6,'Jaipur'),(9,'Kolkata'),(8,'Mangalore'),(2,'Mumbai'),(1,'Nagpur'),(11,'Okha'),(10,'Puri'),(5,'Udupi');
 /*!40000 ALTER TABLE `Stations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,11 +131,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `TC`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `TC` (
-  `tc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tc_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
+  `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`tc_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -157,14 +157,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Ticket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Ticket` (
-  `pid` int(11) NOT NULL,
-  `trip_id` int(11) NOT NULL,
+  `pid` int NOT NULL,
+  `trip_id` int NOT NULL,
   `coach` varchar(255) NOT NULL,
-  `seat_no` int(11) NOT NULL,
+  `seat_no` int NOT NULL,
   `status` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` int NOT NULL,
   PRIMARY KEY (`pid`,`trip_id`,`coach`,`seat_no`),
   KEY `Ticket_fk1` (`trip_id`),
   CONSTRAINT `Ticket_fk0` FOREIGN KEY (`pid`) REFERENCES `Passengers` (`pid`),
@@ -187,14 +187,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Trains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Trains` (
-  `train_id` int(11) NOT NULL AUTO_INCREMENT,
+  `train_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `start` varchar(255) NOT NULL,
-	`end` varchar(255) NOT NULL,
+  `end` varchar(255) NOT NULL,
   PRIMARY KEY (`train_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,9 +203,39 @@ CREATE TABLE `Trains` (
 
 LOCK TABLES `Trains` WRITE;
 /*!40000 ALTER TABLE `Trains` DISABLE KEYS */;
-INSERT INTO `Trains` VALUES (1,'Rajdhani','Delhi','Mumbai');
+INSERT INTO `Trains` VALUES (1,'Rajdhani','Delhi','Mumbai'),(8,'Puri-Okha Express','Puri','Okha');
 /*!40000 ALTER TABLE `Trains` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `StationExists` BEFORE INSERT ON `Trains` FOR EACH ROW BEGIN
+        IF NEW.start not in (
+            select name
+            From Stations
+            where (NEW.start=name)
+        ) THEN 
+            CALL InsertStation(NEW.start);
+        END IF;
+        IF NEW.end not in (
+            select name
+            From Stations 
+            where (NEW.end=name)
+        ) THEN 
+            CALL InsertStation(NEW.end);
+        END IF;
+    END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `Trips`
@@ -213,26 +243,26 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Trips`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Trips` (
-  `trip_id` int(11) NOT NULL AUTO_INCREMENT,
-  `train_id` int(11) NOT NULL,
-  `admin_id` int(11) NOT NULL,
-  `from_sid` int(11) NOT NULL,
+  `trip_id` int NOT NULL AUTO_INCREMENT,
+  `train_id` int NOT NULL,
+  `admin_id` int NOT NULL,
+  `from_sid` int NOT NULL,
   `to_sid` varchar(11) NOT NULL,
   `d_date` date NOT NULL,
   `a_date` date NOT NULL,
   `d_time` time NOT NULL,
   `a_time` time NOT NULL,
-  `driver_id` int(11) NOT NULL,
-  `tc_id` int(11) NOT NULL,
+  `driver_id` int NOT NULL,
+  `tc_id` int NOT NULL,
   `status` varchar(255) NOT NULL,
-  `AC2_seats` int(11) NOT NULL DEFAULT '30',
-  `AC3_seats` int(11) NOT NULL DEFAULT '30',
-  `sleeper_seats` int(11) NOT NULL DEFAULT '30',
-  `AC2_price` int(11) NOT NULL DEFAULT '200',
-  `AC3_price` int(11) NOT NULL DEFAULT '150',
-  `sleeper_price` int(11) NOT NULL DEFAULT '100',
+  `AC2_seats` int NOT NULL DEFAULT '30',
+  `AC3_seats` int NOT NULL DEFAULT '30',
+  `sleeper_seats` int NOT NULL DEFAULT '30',
+  `AC2_price` int NOT NULL DEFAULT '200',
+  `AC3_price` int NOT NULL DEFAULT '150',
+  `sleeper_price` int NOT NULL DEFAULT '100',
   PRIMARY KEY (`trip_id`),
   KEY `Trips_fk0` (`train_id`),
   KEY `Trips_fk1` (`admin_id`),
@@ -262,12 +292,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
+  `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
@@ -294,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-23  2:12:57
+-- Dump completed on 2020-05-23 15:44:05
