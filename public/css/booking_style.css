@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
 
 html,
 body {
@@ -46,8 +48,8 @@ h1 {
 }
 
 .tags {
-  padding: 2px 8px 2px 8px;
-  margin-left: 78%;
+  padding: 2px 2px 2px 8px;
+  margin-left: 81%;
   padding-top: 0.7%;
 }
 
@@ -214,4 +216,10 @@ h1 {
 }
 .class-block {
   margin-left: 7%;
+}
+
+.tags i{
+  width: 26px;
+  float: left;
+  text-align: center;
 }
