@@ -47,34 +47,27 @@ h1 {
 
 .tags {
   padding: 2px 8px 2px 8px;
-  
+  margin-left: 78%;
   padding-top: 0.7%;
+}
+
+.name-tag {
+  position: absolute;
+  left: 1%;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
 .nav-tag {
   cursor: pointer;
-  padding: 8px 8px;
+  padding: 0px 8px;
   text-decoration: none;
-  margin-left:78%;
   border: none;
   color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   margin: 0 10px 0 10px;
-}
-
-.name-tag {
-  cursor: pointer;
-  position: absolute;
-  left: 2%;
-  /* padding: 8px 8px; */
-  /* text-decoration: none; */
-  /* margin-left:9%; */
-  /* border: none; */
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  /* margin: 0 10px 0 10px; */
 }
 
 .nav-tag:hover {
