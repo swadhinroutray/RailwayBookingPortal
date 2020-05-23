@@ -14,8 +14,9 @@ router.post('/register', auth.register);
 router.get(`/booking`, user.renderBooking);
 
 //Feedback Routes
-router.get(`/feedback`, user.renderFeedBack)
-router.post(`/feedbackForm`,user.feedback)
+router.get(`/feedback`, user.renderFeedBack);
+router.post(`/feedbackForm`,user.feedback);
 //Admin Routes
-router.get(`/viewfeedback`,admin.viewfeedback)
+router.get(`/viewfeedback`,admin.viewfeedback);
+router.post(`/addtrain`, admin.addtrain);
 module.exports = router;
