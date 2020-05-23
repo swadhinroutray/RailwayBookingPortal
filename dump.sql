@@ -110,7 +110,6 @@ DROP TABLE IF EXISTS `Stations`;
 CREATE TABLE `Stations` (
   `sid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -192,6 +191,8 @@ DROP TABLE IF EXISTS `Trains`;
 CREATE TABLE `Trains` (
   `train_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `start` varchar(255) NOT NULL,
+	`end` varchar(255) NOT NULL,
   PRIMARY KEY (`train_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -202,7 +203,7 @@ CREATE TABLE `Trains` (
 
 LOCK TABLES `Trains` WRITE;
 /*!40000 ALTER TABLE `Trains` DISABLE KEYS */;
-INSERT INTO `Trains` VALUES (1,'Rajdhani'),(2,'Rajdhani'),(3,'Bombay Express'),(4,'Rajdhani'),(5,'Goa Express'),(6,'Udupi Express'),(7,'Malabar Express');
+INSERT INTO `Trains` VALUES (1,'Rajdhani','Delhi','Mumbai');
 /*!40000 ALTER TABLE `Trains` ENABLE KEYS */;
 UNLOCK TABLES;
 
