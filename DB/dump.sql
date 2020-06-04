@@ -112,7 +112,7 @@ CREATE TABLE `Stations` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`sid`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `Stations` (
 
 LOCK TABLES `Stations` WRITE;
 /*!40000 ALTER TABLE `Stations` DISABLE KEYS */;
-INSERT INTO `Stations` VALUES (7,'Bangalore'),(4,'Chennai'),(3,'Delhi'),(6,'Jaipur'),(9,'Kolkata'),(8,'Mangalore'),(2,'Mumbai'),(1,'Nagpur'),(11,'Okha'),(10,'Puri'),(5,'Udupi');
+INSERT INTO `Stations` VALUES (7,'Bangalore'),(4,'Chennai'),(3,'Delhi'),(6,'Jaipur'),(12,'Jalandhar'),(9,'Kolkata'),(8,'Mangalore'),(2,'Mumbai'),(1,'Nagpur'),(11,'Okha'),(10,'Puri'),(5,'Udupi');
 /*!40000 ALTER TABLE `Stations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `Trains` (
   `start` varchar(255) NOT NULL,
   `end` varchar(255) NOT NULL,
   PRIMARY KEY (`train_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `Trains` (
 
 LOCK TABLES `Trains` WRITE;
 /*!40000 ALTER TABLE `Trains` DISABLE KEYS */;
-INSERT INTO `Trains` VALUES (1,'Rajdhani','Delhi','Mumbai'),(8,'Puri-Okha Express','Puri','Okha');
+INSERT INTO `Trains` VALUES (1,'Rajdhani','Delhi','Mumbai'),(8,'Puri-Okha Express','Puri','Okha'),(9,'Puri-Okha Express','Puri','Mumbai'),(10,'Puri-Jalandhar Express','Puri','Jalandhar');
 /*!40000 ALTER TABLE `Trains` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -300,9 +300,10 @@ CREATE TABLE `Users` (
   `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,7 +312,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (2,'swadhin','abc',20,'Pune',NULL),(3,'dhruv','abc',20,'Pune',NULL),(4,'devangarora','asd',12,'asd','devangarora'),(5,'devang','$2b$10$66.l0Ka20JsbIBdCBmN5CO0FApnGKDof81NAXV/jtYsb.3716Ge0G',20,'delhi','devangarora');
+INSERT INTO `Users` VALUES (2,'swadhin','abc',20,'Pune',NULL,NULL),(3,'dhruv','abc',20,'Pune',NULL,NULL),(4,'devangarora','asd',12,'asd','devangarora',NULL),(5,'devang','$2b$10$66.l0Ka20JsbIBdCBmN5CO0FApnGKDof81NAXV/jtYsb.3716Ge0G',20,'delhi','devangarora',NULL),(6,'hello','$2b$10$mPgu97p.0rIk1fqBn64JTuOkWDaVpVyxVnQxRiyoSoBbO4.yCc05S',12,'123','swadhin',NULL);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -324,4 +325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-23 15:44:05
+-- Dump completed on 2020-06-04 18:52:36

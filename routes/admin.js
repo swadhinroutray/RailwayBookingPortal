@@ -32,7 +32,49 @@ exp.addtrain = async(req,res) =>{
 exp.editTrain = async(req,res) => {
 
 }
+exp.delayNotificationEmailList = async(req,res) => {
+    let trainID = req.body.trainID;
+    await to(db.query(`SET @emailList="";`));
+    await to(db.query(`CALL GetEmail(@emailList,?);`, [trainID]));
+    [err,data] = await to(db.query(`SELECT @emailList;`));
 
+    if(err) {
+        console.log(err)
+        return res.send('Error in Inserting Train');
+    } 
+    console.log("Inserted Train");
+    return res.send({success:true, data:data});
+}
+
+
+/*
+
+Inserting Train procedure 
+
+Delimiter $$
+CREATE PROCEDURE GetEmail (
+    INOUT emailList varchar(4000),
+    in trainID int
+)
+BEGIN
+	DECLARE finished INTEGER DEFAULT 0;
+	DECLARE emailAddress varchar(100) DEFAULT "";
+	DECLARE curEmail 
+		CURSOR FOR 
+			SELECT email FROM Users natural join Passengers WHERE status="active";
+	DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET finished = 1;
+	OPEN curEmail;
+	getEmail: LOOP
+		FETCH curEmail INTO emailAddress;
+		IF finished = 1 THEN 
+			LEAVE getEmail;
+		END IF;
+		SET emailList = CONCAT(emailAddress,";",emailList);
+	END LOOP getEmail;
+    CLOSE curEmail;
+    END $$
+*/
 
 /*
 
@@ -50,7 +92,7 @@ BEGIN
 
 
 
-  TODO: Trigger in adding train 
+//   TODO: Trigger in adding train 
  delimiter $$
 CREATE TRIGGER StationExists BEFORE INSERT ON Trains
     FOR EACH ROW
@@ -80,6 +122,5 @@ CREATE PROCEDURE `InsertStation` (in stationname  varchar(255))
 	Insert into Stations(name) Values(stationname);
     END $$
 */
-
 
 module.exports = exp;
