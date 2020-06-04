@@ -53,3 +53,29 @@ BEGIN
 	Insert into Feedback(user_id,body,rating)
 	Values(userId,Body,Rating);
   END $$
+
+--Get Emails Cursor
+Delimiter $$
+CREATE PROCEDURE GetEmail (
+    INOUT emailList varchar(4000),
+    in trainID int
+)
+BEGIN
+	DECLARE finished INTEGER DEFAULT 0;
+	DECLARE emailAddress varchar(100) DEFAULT "";
+	DECLARE curEmail 
+		CURSOR FOR 
+			SELECT email FROM Users natural join Passengers WHERE status="active";
+	DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET finished = 1;
+	OPEN curEmail;
+	getEmail: LOOP
+		FETCH curEmail INTO emailAddress;
+		IF finished = 1 THEN 
+			LEAVE getEmail;
+		END IF;
+		SET emailList = CONCAT(emailAddress,";",emailList);
+	END LOOP getEmail;
+    CLOSE curEmail;
+    END $$
+
