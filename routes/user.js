@@ -6,6 +6,10 @@ exp.renderBooking = (req, res) => {
     res.render(`booking`, {user: req.session});
 }
 
+exp.findTrains = async(req,res) => {
+    return res.send(req.body);
+}
+
 exp.renderFeedBack = (req,res) =>{
     res.render(`feedback`,{})
 }

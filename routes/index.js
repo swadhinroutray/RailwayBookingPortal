@@ -12,6 +12,7 @@ router.post('/register', auth.register);
 
 //Booking Routes
 router.get(`/booking`, user.renderBooking);
+router.post(`/findTrains`, user.findTrains);
 
 //Feedback Routes
 router.get(`/feedback`, user.renderFeedBack);

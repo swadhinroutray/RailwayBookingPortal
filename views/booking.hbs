@@ -9,11 +9,13 @@
 </head>
 
 <body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <header>
     <div class="nav">
       <div class="tags">
-        <label for="Name" class="name-tag">{{user.name}}</label>
+        
+        <label for="Name" class="name-tag"><i class="fas fa-user"></i>{{user.name}}</label>
         <a class="nav-tag" href="#">My Trips</a>
         <a class="nav-tag" id="Logout" href="#">Log Out</a>
       </div>
@@ -25,6 +27,7 @@
 
   </header>
 
+  <form method="post" action="/findTrains">
   <div class="details">
     <div class="source-block">
       <label class="sourcelabel">Source</label>
@@ -84,8 +87,43 @@
         </select>
       </div>
     </div>
+    <input type="submit" class="submitbtn">
   </div>
-  <input type="submit" value="Find Trains" class="submitbtn" formaction="/findTrains" />
+  
+   
+  </form>
+
+      <form method="post" action="/findTrains">
+        <div class="table-container">
+            
+            <table id="table">
+                <tbody class="product-options">
+                   
+                    <tr id="table-header">
+                        <td>Train</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td>Arrival Time</td>
+                        <td>Departure Time</td>
+                    </tr>
+                    
+                    {{#each trips}}
+                    <tr class="item-row">
+                      <td>{{trips.name}}</td>
+                      <td>{{trips.from}}</td>
+                      <td>{{trips.to}}</td>
+                      <td>{{trips.arrivalTime}}</td>
+                      <td>{{trips.departureTime}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+
+
+
 </body>
 <script>
   var x, i, j, selElmnt, a, b, c;
