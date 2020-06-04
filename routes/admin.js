@@ -30,8 +30,34 @@ exp.addtrain = async(req,res) =>{
     return res.send({success:true});
 }
 exp.editTrain = async(req,res) => {
+    
 
 }
+exp.addtrips = async(req,res) =>{
+    const  trainID = req.body.trainID;
+    const admin_id = req.session.admin_id;
+    const from_sid= req.body.from;
+    const to_sid = req.body.to;
+    const dDate = req.body.dDate;
+    const aDate = req.body.aDate;
+    const dTime= req.body.dTime;
+    const aTime = req.body.aTime;
+    const driverID = req.body.driver;
+    const tcID = req.body.tcID;
+    const status = "active";
+
+
+            let sql = `INSERT INTO Trips(train_id,admin_id,from_sid,to_sid,d_date,a_date,d_time,a_time,driver_id,tc_id,status) VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
+            [err, result] = await to(db.query(sql,[trainID,admin_id,from_sid,to_sid,dDate,aDate,dTime,aTime,driverID,tcID,status]));
+
+            if(err) {
+                console.log(err);
+                return res.send(err);
+            } else {
+                return res.send({success:true, msg:'Added new Trip!'});
+            }
+}
+
 exp.delayNotificationEmailList = async(req,res) => {
     let trainID = req.body.trainID;
     await to(db.query(`SET @emailList="";`));
@@ -40,13 +66,45 @@ exp.delayNotificationEmailList = async(req,res) => {
 
     if(err) {
         console.log(err)
-        return res.send('Error in Inserting Train');
+        return res.send('Error in getting email List');
     } 
     console.log("Inserted Train");
     return res.send({success:true, data:data});
 }
 
+exp.getFreeEmployees = async(req,res) => {
+    if(req.params.type == 1){
+        [err,data] = await to(db.query(`Select * from Drivers WHERE driver_id NOT IN (SELECT driver_id from Trips);`))
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        if(data.length ==0){
+            return res.send({success:true,data:"No free Drivers"})
+        }
+    
 
+        return res.send({success:true,data:data});
+    }
+    if(req.params.type == 2)
+    {
+        [err,data] = await to(db.query(`Select * from TC WHERE tc_id NOT IN (SELECT tc_id from Trips);`))
+        if(err){
+            console.log(err);
+            return res.send(err);
+        }
+        if(data.length ==0){
+            return res.send({success:true,data:"No free TCs"})
+        }
+        return res.send({success:true,data:data});
+
+    }
+    else {
+        return res.send({success:false,data:"Unsupported Type"})
+    }
+}
+
+// exp. 
 /*
 
 Inserting Train procedure 

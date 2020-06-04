@@ -22,7 +22,11 @@ exp.feedback =  async (req,res) => {
     return res.send({success:true});
     
 }
-
+//TODO: Ye solve kar
+exp.totalSpent = async(req,res) =>{
+    const user_id = req.session.user_id;
+    [err,data] = await to(db.query(``))
+}
 module.exports = exp;
 
 /*

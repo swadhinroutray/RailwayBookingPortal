@@ -19,4 +19,6 @@ router.post(`/feedbackForm`,user.feedback);
 //Admin Routes
 router.get(`/viewfeedback`,admin.viewfeedback);
 router.post(`/addtrain`, admin.addtrain);
+router.post(`/addtrip`,admin.addtrips);
+router.get(`/freeEmployees/:type`,admin.getFreeEmployees)
 module.exports = router;
