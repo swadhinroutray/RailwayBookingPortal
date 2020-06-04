@@ -10,8 +10,6 @@ CREATE TABLE `Users` (
 CREATE TABLE `Trains` (
 	`train_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
-	`start` varchar(255) NOT NULL,
-	`end` varchar(255) NOT NULL,
 	PRIMARY KEY (`train_id`)
 );
 
@@ -26,8 +24,8 @@ CREATE TABLE `Trips` (
 	`trip_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`train_id` INT NOT NULL,
 	`admin_id` INT NOT NULL,
-	`from_sid` INT(11) NOT NULL,
-	`to_sid` varchar(11) NOT NULL,
+	`from` INT(11) NOT NULL,
+	`to` varchar(11) NOT NULL,
 	`d_date` DATE NOT NULL,
 	`a_date` DATE NOT NULL,
 	`d_time` TIME NOT NULL,
@@ -35,12 +33,7 @@ CREATE TABLE `Trips` (
 	`driver_id` INT NOT NULL,
 	`tc_id` INT NOT NULL,
 	`status` varchar(255) NOT NULL,
-	`AC2_seats` INT NOT NULL DEFAULT '30',
-	`AC3_seats` INT NOT NULL DEFAULT '30',
-	`sleeper_seats` INT NOT NULL DEFAULT '30',
-	`AC2_price` INT(11) NOT NULL DEFAULT '200',
-	`AC3_price` INT(11) NOT NULL DEFAULT '150',
-	`sleeper_price` INT(11) NOT NULL DEFAULT '100',
+	`fare` INT NOT NULL DEFAULT '30',
 	PRIMARY KEY (`trip_id`)
 );
 
@@ -80,11 +73,11 @@ CREATE TABLE `Admins` (
 );
 
 CREATE TABLE `Feedback` (
-	`feedback_id` INT(11) NOT NULL AUTO_INCREMENT,
-	`user_id` INT(11) NOT NULL,
+	`user_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`trip_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`body` varchar(255) NOT NULL,
 	`rating` INT NOT NULL,
-	PRIMARY KEY (`feedback_id`)
+	PRIMARY KEY (`user_id`,`trip_id`)
 );
 
 CREATE TABLE `Ticket` (
@@ -92,8 +85,6 @@ CREATE TABLE `Ticket` (
 	`trip_id` INT NOT NULL,
 	`coach` varchar(255) NOT NULL,
 	`seat_no` INT(11) NOT NULL,
-	`status` varchar(255) NOT NULL,
-	`price` INT(11) NOT NULL,
 	PRIMARY KEY (`pid`,`trip_id`,`coach`,`seat_no`)
 );
 
@@ -101,9 +92,9 @@ ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk0` FOREIGN KEY (`train_id`) REFERENC
 
 ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk1` FOREIGN KEY (`admin_id`) REFERENCES `Admins`(`admin_id`);
 
-ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk2` FOREIGN KEY (`from_sid`) REFERENCES `Stations`(`sid`);
+ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk2` FOREIGN KEY (`from`) REFERENCES `Stations`(`sid`);
 
-ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk3` FOREIGN KEY (`to_sid`) REFERENCES `Stations`(`sid`);
+ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk3` FOREIGN KEY (`to`) REFERENCES `Stations`(`sid`);
 
 ALTER TABLE `Trips` ADD CONSTRAINT `Trips_fk4` FOREIGN KEY (`driver_id`) REFERENCES `Drivers`(`driver_id`);
 
@@ -120,6 +111,7 @@ ALTER TABLE `Feedback` ADD CONSTRAINT `Feedback_fk1` FOREIGN KEY (`trip_id`) REF
 ALTER TABLE `Ticket` ADD CONSTRAINT `Ticket_fk0` FOREIGN KEY (`pid`) REFERENCES `Passengers`(`pid`);
 
 ALTER TABLE `Ticket` ADD CONSTRAINT `Ticket_fk1` FOREIGN KEY (`trip_id`) REFERENCES `Trips`(`trip_id`);
+
 
 
 insert into Users(name,password,age,address) values("devang","abc",20,"Delhi");
@@ -145,3 +137,6 @@ insert into Trains(name) values("Rajdhani");
 insert into Trains(name) values("Goa Express");
 insert into Trains(name) values("Udupi Express");
 insert into Trains(name) values("Malabar Express");
+
+insert into Passengers(trip_id,user_id,status) values(1,2,"scheduled");
+insert into Ticket(pid,trip_id,coach,seat_no,status,price) values(3,1,"sleeper",20,"confirmed",100);

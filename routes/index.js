@@ -12,6 +12,7 @@ router.post('/register', auth.register);
 
 //Booking Routes
 router.get(`/booking`, user.renderBooking);
+router.post(`/findTrains`, user.findTrains);
 
 //Feedback Routes
 router.get(`/feedback`, user.renderFeedBack);
@@ -19,4 +20,6 @@ router.post(`/feedbackForm`,user.feedback);
 //Admin Routes
 router.get(`/viewfeedback`,admin.viewfeedback);
 router.post(`/addtrain`, admin.addtrain);
+
+
 module.exports = router;
