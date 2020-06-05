@@ -68,7 +68,7 @@ exp.delayNotificationEmailList = async(req,res) => {
         console.log(err)
         return res.send('Error in getting email List');
     } 
-    console.log("Inserted Train");
+    console.log("Got email list");
     return res.send({success:true, data:data});
 }
 
@@ -102,6 +102,17 @@ exp.getFreeEmployees = async(req,res) => {
     else {
         return res.send({success:false,data:"Unsupported Type"})
     }
+}
+
+exp.TripEarningAndCount = async(req,res) =>{
+    const trip_id = req.body.trip_id;
+    [err,data] = await to(db.query(`Select sum(fare) as Earning, count(fare) as TotalCount from (Select fare,trip_id from Passengers Natural Join Trips)as EarningTable where trip_id = ?;`,[trip_id]));
+    if (err){
+        console.log(err);
+        return res.send("Err getting Count and Earning")
+    }
+    return res.send({success:true,data:data});
+
 }
 
 // exp. 

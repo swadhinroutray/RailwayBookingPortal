@@ -57,7 +57,7 @@ CREATE TABLE `Drivers` (
   `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`driver_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `Drivers` (
 
 LOCK TABLES `Drivers` WRITE;
 /*!40000 ALTER TABLE `Drivers` DISABLE KEYS */;
-INSERT INTO `Drivers` VALUES (1,'Mukesh Ranjan',40,'Udupi');
+INSERT INTO `Drivers` VALUES (1,'Mukesh Ranjan',40,'Udupi'),(2,'devangboy',69,'EarthquakeNagar');
 /*!40000 ALTER TABLE `Drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,14 +81,13 @@ CREATE TABLE `Passengers` (
   `pid` int NOT NULL AUTO_INCREMENT,
   `trip_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`pid`),
   KEY `Passengers_fk0` (`trip_id`),
   KEY `Passengers_fk1` (`user_id`),
   CONSTRAINT `Passengers_fk0` FOREIGN KEY (`trip_id`) REFERENCES `Trips` (`trip_id`),
   CONSTRAINT `Passengers_fk1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +96,7 @@ CREATE TABLE `Passengers` (
 
 LOCK TABLES `Passengers` WRITE;
 /*!40000 ALTER TABLE `Passengers` DISABLE KEYS */;
+INSERT INTO `Passengers` VALUES (1,1,2,'scheduled'),(2,1,3,'active'),(3,1,7,'active'),(4,1,8,'active'),(5,1,9,'active');
 /*!40000 ALTER TABLE `Passengers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `TC` (
   `age` int NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`tc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `TC` (
 
 LOCK TABLES `TC` WRITE;
 /*!40000 ALTER TABLE `TC` DISABLE KEYS */;
-INSERT INTO `TC` VALUES (1,'Harish Kumar',40,'Udupi');
+INSERT INTO `TC` VALUES (1,'Harish Kumar',40,'Udupi'),(2,'dhruvboy',69,'POONA');
 /*!40000 ALTER TABLE `TC` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,6 +178,7 @@ CREATE TABLE `Ticket` (
 
 LOCK TABLES `Ticket` WRITE;
 /*!40000 ALTER TABLE `Ticket` DISABLE KEYS */;
+INSERT INTO `Ticket` VALUES (1,1,'sleeper',20,'confirmed',100);
 /*!40000 ALTER TABLE `Ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,12 +258,6 @@ CREATE TABLE `Trips` (
   `driver_id` int NOT NULL,
   `tc_id` int NOT NULL,
   `status` varchar(255) NOT NULL,
-  `AC2_seats` int NOT NULL DEFAULT '30',
-  `AC3_seats` int NOT NULL DEFAULT '30',
-  `sleeper_seats` int NOT NULL DEFAULT '30',
-  `AC2_price` int NOT NULL DEFAULT '200',
-  `AC3_price` int NOT NULL DEFAULT '150',
-  `sleeper_price` int NOT NULL DEFAULT '100',
   PRIMARY KEY (`trip_id`),
   KEY `Trips_fk0` (`train_id`),
   KEY `Trips_fk1` (`admin_id`),
@@ -274,7 +269,7 @@ CREATE TABLE `Trips` (
   CONSTRAINT `Trips_fk2` FOREIGN KEY (`from_sid`) REFERENCES `Stations` (`sid`),
   CONSTRAINT `Trips_fk4` FOREIGN KEY (`driver_id`) REFERENCES `Drivers` (`driver_id`),
   CONSTRAINT `Trips_fk5` FOREIGN KEY (`tc_id`) REFERENCES `TC` (`tc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,6 +278,7 @@ CREATE TABLE `Trips` (
 
 LOCK TABLES `Trips` WRITE;
 /*!40000 ALTER TABLE `Trips` DISABLE KEYS */;
+INSERT INTO `Trips` VALUES (1,8,1,10,'11','2008-11-11','2008-12-11','09:10:00','12:00:00',1,1,'active');
 /*!40000 ALTER TABLE `Trips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +299,7 @@ CREATE TABLE `Users` (
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +308,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (2,'swadhin','abc',20,'Pune',NULL,NULL),(3,'dhruv','abc',20,'Pune',NULL,NULL),(4,'devangarora','asd',12,'asd','devangarora',NULL),(5,'devang','$2b$10$66.l0Ka20JsbIBdCBmN5CO0FApnGKDof81NAXV/jtYsb.3716Ge0G',20,'delhi','devangarora',NULL),(6,'hello','$2b$10$mPgu97p.0rIk1fqBn64JTuOkWDaVpVyxVnQxRiyoSoBbO4.yCc05S',12,'123','swadhin',NULL);
+INSERT INTO `Users` VALUES (2,'swadhin','abc',20,'Pune',NULL,NULL),(3,'dhruv','abc',20,'Pune',NULL,'raipurerandi@hoe.com'),(4,'devangarora','asd',12,'asd','devangarora',NULL),(5,'devang','$2b$10$66.l0Ka20JsbIBdCBmN5CO0FApnGKDof81NAXV/jtYsb.3716Ge0G',20,'delhi','devangarora',NULL),(6,'hello','$2b$10$mPgu97p.0rIk1fqBn64JTuOkWDaVpVyxVnQxRiyoSoBbO4.yCc05S',12,'123','swadhin',NULL),(7,'hello1','abc',18,'lmao','khiladi','hello1@gmail.com'),(8,'hello2','abc',18,'lmao','khiladi','hello2@gmail.com'),(9,'hello3','abc',18,'lmao','khiladi','hello3@gmail.com');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -325,4 +321,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-04 18:52:36
+-- Dump completed on 2020-06-05 10:54:06

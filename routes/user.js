@@ -26,12 +26,28 @@ exp.feedback =  async (req,res) => {
     return res.send({success:true});
     
 }
-//TODO: Ye solve kar
-exp.totalSpent = async(req,res) =>{
+
+exp.getSeatDeatils = async(req,res) =>{
+    const trip_id = req.body.trip_id;
     const user_id = req.session.user_id;
-    [err,data] = await to(db.query(``))
+    [err,data]= await to(db.query(`select coach, seat_no, status from Ticket where pid in (select pid from Passengers where trip_id = ? and user_id = ?);`,[trip_id,user_id]));
+    if(err) {
+        console.log(err)
+        return res.send({success:false,data:'Error in getting seat details'});
+    } 
+    return res.send({success:true,data:data});
+   
 }
-module.exports = exp;
+
+exp.getPassangerDetails = async(req,res)=>{
+    const trip_id = req.body.trip_id;
+    [err,data]= await to(db.query(`select name, age, address from Users where user_id in (select user_id from Passengers where trip_id = ?);`,[trip_id]));
+    if(err) {
+        console.log(err)
+        return res.send({success:false,data:'Error in getting passanger details'});
+    } 
+    return res.send({success:true,data:data});
+}
 
 /*
 
@@ -47,3 +63,4 @@ BEGIN
 	Values(userId,Body,Rating);
   END $$
 */
+module.exports = exp;
