@@ -16,6 +16,7 @@ router.post(`/findTrains`, user.findTrains);
 router.post(`/getseat`,user.getSeatDeatils)
 router.post(`/getpassangers`,user.getPassangerDetails);
 
+router.post(`/bookTicket`, user.bookTicket);
 
 //Feedback Routes
 router.get(`/feedback`, user.renderFeedBack);

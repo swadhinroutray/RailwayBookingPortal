@@ -10,6 +10,43 @@ exp.findTrains = async(req,res) => {
     return res.send(req.body);
 }
 
+exp.bookTicket = async(req, res) => {
+
+    const user_id = req.body.user_id;
+    const trip_id = req.body.trip_id;
+    const seat_no = req.body.seat_no;
+    const coach = req.body.coach;
+
+    [err,result] = await to(db.query(`SELECT * FROM Ticket WHERE seat_no = ${seat_no} and coach = ${coach} and trip_id = ${trip_id}`));
+    
+    if(result.length > 0) { // seat is taken
+        return res.send('Seat already booked! Please select another seat');
+    }
+
+    [err, result] = await to(db.query(`INSERT INTO Passengers(trip_id,user_id,status) values(${trip_id},${user_id},"confirmed")`));
+    if(err) {
+        return res.send('Error in booking');
+    } else {
+        [err, passengersData] = await to(db.query(`SELECT pid FROM Passengers where trip_id = ${trip_id} and user_id = ${user_id}`));
+        [err, tripsData] = await to(db.query(`SELECT fare FROM Trips where trip_id = ${trip_id}`));
+        
+        const pid = passengersData[0].pid;
+        const price = tripsData[0].fare;
+
+        [err, result] = await to(db.query(`insert into Ticket(pid,trip_id,coach,seat_no,status,price) values(${pid},${trip_id},${coach},${seat_no},"confirmed",${price})`))
+
+        if(err) {
+            return res.send('Error in booking');
+        } else {
+            return res.send(`Booking successful`);
+        }
+    }
+    
+
+}
+
+
+
 exp.renderFeedBack = (req,res) =>{
     res.render(`feedback`,{})
 }
