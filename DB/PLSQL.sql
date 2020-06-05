@@ -1,5 +1,5 @@
 
---Inserting Train procedure 
+--Inserting Train procedure -- devang
 
 Delimiter $$
 CREATE PROCEDURE `InsertTrain`
@@ -13,7 +13,7 @@ BEGIN
 
 
 
--- Trigger in adding train 
+-- Trigger in adding train -- swadhin
 delimiter $$
 CREATE TRIGGER StationExists BEFORE INSERT ON Trains
     FOR EACH ROW
@@ -34,7 +34,7 @@ CREATE TRIGGER StationExists BEFORE INSERT ON Trains
         END IF;
     END $$
 
---INSERT STATION PROCEDURE
+--INSERT STATION PROCEDURE -- dhruv
 Delimiter $$
 CREATE PROCEDURE `InsertStation` (in stationname  varchar(255))
     BEGIN
@@ -42,7 +42,7 @@ CREATE PROCEDURE `InsertStation` (in stationname  varchar(255))
     END $$
 
 
---Inserting feedback procedure 
+--Inserting feedback procedure -- abhishek
 
 Delimiter $$
 CREATE PROCEDURE `InsertFeedback`(
@@ -54,7 +54,7 @@ BEGIN
 	Values(userId,Body,Rating);
   END $$
 
---Get Emails Cursor
+--Get Emails Cursor -- swadhin
 Delimiter $$
 CREATE PROCEDURE GetEmail (
     INOUT emailList varchar(4000),
