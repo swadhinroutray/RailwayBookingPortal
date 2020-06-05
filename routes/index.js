@@ -13,13 +13,16 @@ router.post('/register', auth.register);
 //Booking Routes
 router.get(`/booking`, user.renderBooking);
 router.post(`/findTrains`, user.findTrains);
+router.post(`/bookTicket`, user.bookTicket);
 
 //Feedback Routes
 router.get(`/feedback`, user.renderFeedBack);
 router.post(`/feedbackForm`,user.feedback);
+
 //Admin Routes
 router.get(`/viewfeedback`,admin.viewfeedback);
 router.post(`/addtrain`, admin.addtrain);
 router.post(`/addtrip`,admin.addtrips);
 router.get(`/freeEmployees/:type`,admin.getFreeEmployees)
+
 module.exports = router;
